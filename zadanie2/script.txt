@@ -1,0 +1,181 @@
+
+function Negatyw() {
+	var myImageDataOUT = myContext1.getImageData(0, 0, myWidth, myHeight);
+	var myDataOUT = myImageDataOUT.data;
+    for (var i = 0; i < myDataOUT.length; i += 4) {
+      myDataOUT[i]     = 255 - myDataOUT[i];     // red
+      myDataOUT[i + 1] = 255 - myDataOUT[i + 1]; // green
+      myDataOUT[i + 2] = 255 - myDataOUT[i + 2]; // blue
+    }
+    myContext2.putImageData(myImageDataOUT, 0, 0);
+  };
+
+function OnlyRed( ) {  
+    func31( myContext1, myContext2 );   
+}
+ function func31( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataOUT.length; i += 4 ) {
+        var myGray = ( myDataIN[ i ] + myDataIN[ i + 1 ] + myDataIN[ i + 2 ] ) / 3;
+        if(!(myDataOUT[ i ] >100 && myDataOUT[ i ] <=255 && myDataOUT[ i + 1 ] <95 && myDataOUT[ i + 2 ] <105)|| !(myDataOUT[ i ] >30)){
+        myDataOUT[ i ] = myGray;
+        myDataOUT[ i + 1 ] = myGray;
+        myDataOUT[ i + 2 ] = myGray;
+    }
+      
+    }
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+}
+function OnlyBlue( ) {    
+    func32( myContext1, myContext2 );   
+}
+function func32( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataOUT.length; i += 4 ) {
+        var myGray = ( myDataIN[ i ] + myDataIN[ i + 1 ] + myDataIN[ i + 2 ] ) / 3;
+        if(!(myDataOUT[ i ] <180 && myDataOUT[ i + 1 ] <204 && myDataOUT[ i + 2 ] >30)|| !(myDataOUT[ i + 2] >100)){
+        myDataOUT[ i ] = myGray;
+        myDataOUT[ i + 1 ] = myGray;
+        myDataOUT[ i + 2 ] = myGray;
+    }
+      
+    }
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+}
+
+function OnlyGreen( ) { 
+    func33( myContext1, myContext2 );   
+}
+function func33( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataOUT.length; i += 4 ) {
+        var myGray = ( myDataIN[ i ] + myDataIN[ i + 1 ] + myDataIN[ i + 2 ] ) / 3;
+        if(!(myDataOUT[ i ] <170 && myDataOUT[ i + 1 ] >72 && myDataOUT[ i + 2 ] <120)|| !(myDataOUT[ i + 1] >80)){
+        myDataOUT[ i ] = myGray;
+        myDataOUT[ i + 1 ] = myGray;
+        myDataOUT[ i + 2 ] = myGray;
+    }
+      
+    }
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+}
+
+function DeleteBackground( ) {    
+    func34( myContext1, myContext2 );   
+}
+function func34( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataOUT.length; i += 4 ) {       
+        if(myDataOUT[ i ] ==255 && myDataOUT[ i + 1 ] ==255 && myDataOUT[ i + 2 ] ==255){
+        myDataOUT[ i + 3] = 0;      
+    }
+      
+    }
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+}
+
+function DeleteBackground2( ) {   
+    func35( myContext1, myContext2 );   
+}
+function func35( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataOUT.length; i += 4 ) {       
+        if(myDataOUT[ i ] ==0 && myDataOUT[ i + 1 ] ==0 && myDataOUT[ i + 2 ] ==0){
+        myDataOUT[ i + 3] = 0;      
+    }
+      
+    }
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+}
+
+function Night( ) {   
+    func36( myContext1, myContext1);   
+}
+function func36( contextIN, contextOUT ) {
+    var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+   for ( var i = 0; i < myDataOUT.length; i += 4 ) {    
+     
+        myDataOUT[ i ] *=0.299;
+        myDataOUT[ i + 1 ]*=0.587;
+        myDataOUT[ i + 2 ]*0.114;     
+    	
+    }    
+    contextOUT.putImageData( myImageDataOUT, 0, 0 );
+     makeDarker( myContext2, 60 );
+     contextOUT.putImageData( myImageDataIN, 0, 0 );    
+ }
+
+
+function makeDarker( context, value ) {
+    var myImageDataIN = myContext1.getImageData( 0, 0, myWidth, myHeight );
+    var myImageDataOUT = myContext1.getImageData( 0, 0, myWidth, myHeight );
+
+    var myDataIN = myImageDataIN.data;
+    var myDataOUT = myImageDataOUT.data;
+    for ( var i = 0; i < myDataIN.length; i += 4 ) {
+        if ( ( myDataIN[ i ] - value ) < 0 ? myDataOUT[ i ] = 0 : myDataOUT[ i ] = myDataIN[ i ] - value );
+        if ( ( myDataIN[ i + 1 ] - value ) < 0 ? myDataOUT[ i + 1 ] = 0 : myDataOUT[ i + 1 ] = myDataIN[ i + 1 ] - value );
+        if ( ( myDataIN[ i + 2 ] - value ) < 0 ? myDataOUT[ i + 2 ] = 0 : myDataOUT[ i + 2 ] = myDataIN[ i + 2 ] - value );
+        myDataOUT[ i + 3 ] = myDataIN[ i + 3 ];
+    }
+    context.putImageData( myImageDataOUT, 0, 0 );
+}
+function Old( ) {   
+    sepia( myContext1, myContext2 );   
+}
+
+function sepia(contextIN, contextOUT)
+{
+	var myImageDataIN = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataIN = myImageDataIN.data;
+
+    var myImageDataOUT = contextIN.getImageData( 0, 0, myWidth, myHeight );
+    var myDataOUT = myImageDataOUT.data;
+		
+	   for ( var i = 0; i < myDataIN.length; i += 4 ) {		
+			val = 0.299*myImageDataIN.data[i+0] + 0.587*myImageDataIN.data[i+1] + 0.114*myImageDataIN.data[i+2];
+			if (val + 2 * 35 > 255) 
+			{
+				myImageDataOUT.data[i+0] = 255;
+			} 
+			else
+			{
+				myImageDataOUT.data[i+0] = val + 2 * 35;				
+			}
+			if (val + 35 > 255) 
+			{
+				myImageDataOUT.data[i+1] = 255;
+			} 
+			else
+			{
+				myImageDataOUT.data[i+1] = val + 35;				
+			}
+			myImageDataOUT.data[i+2] = val;
+			myImageDataOUT.data[i+3] = 255;
+	}
+		 contextOUT.putImageData( myImageDataOUT, 0, 0 );
+	}
